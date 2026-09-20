@@ -87,6 +87,7 @@ st.markdown(
         .message-green {
             color: #7CFF7C !important;
             font-weight: bold;
+            font-size: 28px !important;
         }
 
         /* progress-text 以外は小さいまま（サイズ指定なし） */
@@ -117,6 +118,25 @@ st.markdown(
         }
         div[data-testid="stProgress"] > div > div > div > div {
             background-color: red !important;
+        }
+
+        /* 絵文字のサイズ（PC用） */
+        .emoji-frame {
+            font-size: 60px;
+        }
+  
+        /* スマホ（画面幅600px以下）のときだけ適用 */
+        @media (max-width: 600px) {
+            div[data-testid="stMarkdown"] .message-green {
+                font-size: 20px !important;
+                line-height: 1.2 !important;
+            }
+            .progress-text {
+                font-size: 20px !important;
+            }
+            .emoji-frame {
+                font-size: 20px !important;
+            }
         }
 
     </style>
