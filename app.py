@@ -216,9 +216,9 @@ for i, task in enumerate(st.session_state.tasks):
             row2_count = min(max(done_count - 12, 0), 12)
             row3_count = max(done_count - 24, 0)
 
-            row1 = ''.join([f"<span style='font-size:60px;'>{frame}</span>" for _ in range(row1_count)])
-            row2 = ''.join([f"<span style='font-size:60px;'>{frame}</span>" for _ in range(row2_count)])
-            row3 = ''.join([f"<span style='font-size:60px;'>{frame}</span>" for _ in range(row3_count)])
+            row1 = ''.join([f"<span class='emoji-frame'>{frame}</span>" for _ in range(row1_count)])
+            row2 = ''.join([f"<span class='emoji-frame'>{frame}</span>" for _ in range(row2_count)])
+            row3 = ''.join([f"<span class='emoji-frame'>{frame}</span>" for _ in range(row3_count)])
 
             placeholder.markdown(
                 f"""
