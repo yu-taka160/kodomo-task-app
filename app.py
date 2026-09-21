@@ -11,6 +11,18 @@ endpoint = os.getenv("AZURE_LANGUAGE_ENDPOINT")
 key = os.getenv("AZURE_LANGUAGE_KEY")
 region = os.getenv("AZURE_LANGUAGE_REGION")
 
+# 画面幅を取得するJS
+screen_width_script = """
+<script>
+const width = window.innerWidth;
+window.parent.postMessage({screen_width: width}, "*");
+</script>
+"""
+st.markdown(screen_width_script, unsafe_allow_html=True)
+
+if "screen_width" not in st.session_state:
+    st.session_state.screen_width = 800
+
 def analyze_sentiment(text):
     url = f"{endpoint}/text/analytics/v3.1/sentiment"
 
