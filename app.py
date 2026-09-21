@@ -4,24 +4,19 @@ import os
 import requests
 import random
 import time
+from streamlit_js_eval import streamlit_js_eval 
+
+# 画面幅を取得
+width = streamlit_js_eval(js_expressions="window.innerWidth")
+
+if width is None:
+    width = 800
 
 load_dotenv()
 
 endpoint = os.getenv("AZURE_LANGUAGE_ENDPOINT")
 key = os.getenv("AZURE_LANGUAGE_KEY")
 region = os.getenv("AZURE_LANGUAGE_REGION")
-
-# 画面幅を取得するJS
-screen_width_script = """
-<script>
-const width = window.innerWidth;
-window.parent.postMessage({screen_width: width}, "*");
-</script>
-"""
-st.markdown(screen_width_script, unsafe_allow_html=True)
-
-if "screen_width" not in st.session_state:
-    st.session_state.screen_width = 800
 
 def analyze_sentiment(text):
     url = f"{endpoint}/text/analytics/v3.1/sentiment"
@@ -201,10 +196,8 @@ for i, task in enumerate(st.session_state.tasks):
         
         # スマホ用キャラセット
         mobile_animals = ["🐹", "🐷", "🐶"]
-        
-        # 画面幅でスマホ判定
-        width = st.session_state.get("screen_width", 800)
-        
+
+        # 画面幅でスマホ判定（新しい width を使う）
         if width < 600:
             char = random.choice(mobile_animals)
         else:
