@@ -135,7 +135,7 @@ st.markdown(
                 font-size: 20px !important;
             }
             .emoji-frame {
-                font-size: 20px !important;
+                font-size: 28px !important;
             }
         }
 
@@ -183,13 +183,28 @@ for i, task in enumerate(st.session_state.tasks):
 
         done_count = sum(1 for t in st.session_state.tasks if t["done"])
         remaining = len(st.session_state.tasks) - done_count
-
-        char = random.choice(["🐰", "🐣", "🐧"])
-
+        
+        # PC用キャラセット
+        pc_animals = ["🐰", "🐣", "🐧"]
+        
+        # スマホ用キャラセット
+        mobile_animals = ["🐹", "🐷", "🐶"]
+        
+        # 画面幅でスマホ判定
+        width = st.session_state.get("screen_width", 800)
+        
+        if width < 600:
+            char = random.choice(mobile_animals)
+        else:
+            char = random.choice(pc_animals)
+        
         dance = {
             "🐰": ["🐰", "✨", "🐰", "💫", "🐰"],
             "🐣": ["🐣", "💫", "🐣", "✨", "🐣"],
-            "🐧": ["🐧", "✨", "🐧", "💫", "🐧"]
+            "🐧": ["🐧", "✨", "🐧", "💫", "🐧"],
+            "🐹": ["🐹", "✨", "🐹", "💫", "🐹"],
+            "🐷": ["🐷", "💫", "🐷", "✨", "🐷"],
+            "🐶": ["🐶", "✨", "🐶", "💫", "🐶"]
         }
 
         if remaining == 0:
