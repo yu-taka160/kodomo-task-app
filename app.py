@@ -274,6 +274,24 @@ for i, task in enumerate(st.session_state.tasks):
 
             time.sleep(0.3)
 
+st.markdown("""
+<style>
+/* チェック欄を白くする */
+div[data-baseweb="checkbox"] label > div {
+    background-color: white !important;
+    border: 2px solid #666 !important;
+    box-shadow: none !important;
+}
+
+/* 上部の黒い線を消す */
+header[data-testid="stHeader"],
+header[data-testid="stHeader"] > div {
+    box-shadow: none !important;
+    border-bottom: none !important;
+}
+</style>
+""", unsafe_allow_html=True)
+
 # --- 1日の達成率 ---
 total = len(st.session_state.tasks)
 done = sum(1 for t in st.session_state.tasks if t["done"])
