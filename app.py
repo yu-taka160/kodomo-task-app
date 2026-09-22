@@ -146,6 +146,30 @@ st.markdown(
             }
         }
 
+        header, .css-1dp5vir {
+            border: none !important;
+            box-shadow: none !important;
+        }
+        
+        div[role="checkbox"] {
+            background-color: white !important;
+            border: 2px solid #666 !important;
+        }
+        
+        div[data-testid="stProgress"] div {
+            background-color: white !important;
+        }
+        
+        div[data-testid="stProgress"] div > div {
+            background-color: red !important;
+        }
+        
+        input {
+            border: 1px solid #ccc !important;
+            background-color: white !important;
+            color: black !important;
+        }
+
     </style>
     """,
     unsafe_allow_html=True
