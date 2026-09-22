@@ -37,7 +37,6 @@ def analyze_sentiment(text):
 
     return result["documents"][0]["sentiment"]
 
-
 # =========================
 #         CSS
 # =========================
