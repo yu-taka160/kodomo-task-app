@@ -330,6 +330,10 @@ div[data-testid="stAppViewContainer"] {
     background-color: white !important;
 }
 
+div.st-emotion-cache-1vo6xi6.ep3ma5o1 {
+    background-color: white !important;
+}
+
 </style>
 """, unsafe_allow_html=True)
 
