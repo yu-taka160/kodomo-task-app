@@ -149,7 +149,12 @@ st.markdown(
         }
 
         /* 上部の黒い太線を消す */
-        header[data-testid="stHeader"] div {
+        header[data-testid="stHeader"] {
+            box-shadow: none !important;
+            border-bottom: none !important;
+        }
+        
+        header[data-testid="stHeader"] > div {
             box-shadow: none !important;
             border-bottom: none !important;
         }
@@ -162,9 +167,9 @@ st.markdown(
         }
         
         /* チェック欄を白くする */
-        div[data-testid="stTextInput"] > div > div {
-            border: 1px solid #ccc !important;
+        div[data-baseweb="checkbox"] label > div {
             background-color: white !important;
+            border: 2px solid #666 !important;
             box-shadow: none !important;
         }
              
