@@ -113,20 +113,6 @@ st.markdown(
             color: red !important;
         }
 
-        /* 進捗バーのカスタム */
-        div[data-testid="stProgress"] > div {
-            background-color: white !important;
-        }
-        div[data-testid="stProgress"] > div > div {
-            background-color: transparent !important;
-        }
-        div[data-testid="stProgress"] > div > div > div {
-            background-color: transparent !important;
-        }
-        div[data-testid="stProgress"] > div > div > div > div {
-            background-color: red !important;
-        }
-
         /* 絵文字のサイズ（PC用） */
         .emoji-frame {
             font-size: 60px;
