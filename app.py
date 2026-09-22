@@ -326,6 +326,10 @@ div.ep3ma5o1 {
     border-color: transparent !important;
 }
 
+div[data-testid="stAppViewContainer"] {
+    background-color: white !important;
+}
+
 </style>
 """, unsafe_allow_html=True)
 
