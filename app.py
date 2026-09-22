@@ -307,6 +307,12 @@ div.st-emotion-cache-8atqhb.e1zj3zg0 {
     border-top: none !important;
 }
 
+/* 親要素もまとめて影を消す */
+div.st-emotion-cache-8atqhb,
+div.e1zj3zg0 {
+    box-shadow: none !important;
+    border-top: none !important;
+}
 </style>
 """, unsafe_allow_html=True)
 
