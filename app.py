@@ -301,6 +301,12 @@ div[data-testid="stAppViewContainer"] {
     box-shadow: none !important;
     border-top: none !important;
 }
+
+div.st-emotion-cache-8atqhb.e1zj3zg0 {
+    box-shadow: none !important;
+    border-top: none !important;
+}
+
 </style>
 """, unsafe_allow_html=True)
 
