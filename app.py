@@ -307,28 +307,23 @@ div.st-emotion-cache-8atqhb.e1zj3zg0 {
     border-top: none !important;
 }
 
-/* 親要素もまとめて影を消す */
-div.st-emotion-cache-8atqhb,
-div.e1zj3zg0 {
-    box-shadow: none !important;
-    border-top: none !important;
-}
-
 /* 黒線の本体（親要素） */
 div.st-emotion-cache-1vo6xi6.ep3ma5o1 {
     box-shadow: none !important;
     border: none !important;
     border-top: none !important;
     border-bottom: none !important;
+    border-color: transparent !important;
 }
 
-/* 念のため単体クラスにも適用 */
+/* 単体クラスにも適用（階層対策） */
 div.st-emotion-cache-1vo6xi6,
 div.ep3ma5o1 {
     box-shadow: none !important;
     border: none !important;
     border-top: none !important;
     border-bottom: none !important;
+    border-color: transparent !important;
 }
 
 </style>
