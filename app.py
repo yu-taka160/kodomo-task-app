@@ -274,6 +274,13 @@ for i, task in enumerate(st.session_state.tasks):
 
             time.sleep(0.3)
 
+/* チェック欄の黒い□を白くする */
+.st-emotion-cache-x5jhx8 {
+    background-color: white !important;
+    border: 2px solid #666 !important;
+    box-shadow: none !important;
+}
+
 st.markdown("""
 <style>
 /* チェック欄を白くする */
