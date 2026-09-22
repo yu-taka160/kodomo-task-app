@@ -286,6 +286,7 @@ st.markdown("""
 /* 上部の黒い線を消す */
 header[data-testid="stHeader"],
 header[data-testid="stHeader"] > div {
+header[data-testid="stHeader"] div {
     box-shadow: none !important;
     border-bottom: none !important;
 }
