@@ -267,9 +267,29 @@ done = sum(1 for t in st.session_state.tasks if t["done"])
 if total > 0:
     rate = done / total
     st.subheader("きょうの　たっせいりつ")
-    st.progress(rate)
+
     percent = int(rate * 100)
 
+    st.markdown(
+        f"""
+        <div style="
+            width: 100%;
+            height: 20px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        ">
+            <div style="
+                width: {percent}%;
+                height: 100%;
+                background-color: red;
+            "></div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
     # ここがあなたの希望どおりの表示
     if percent == 100:
         st.markdown(
