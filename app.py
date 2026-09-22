@@ -317,14 +317,18 @@ div.e1zj3zg0 {
 /* 黒線の本体（親要素） */
 div.st-emotion-cache-1vo6xi6.ep3ma5o1 {
     box-shadow: none !important;
+    border: none !important;
     border-top: none !important;
+    border-bottom: none !important;
 }
 
-/* 念のため、単体クラスにも適用 */
+/* 念のため単体クラスにも適用 */
 div.st-emotion-cache-1vo6xi6,
 div.ep3ma5o1 {
     box-shadow: none !important;
+    border: none !important;
     border-top: none !important;
+    border-bottom: none !important;
 }
 
 </style>
