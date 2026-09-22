@@ -155,6 +155,30 @@ st.markdown(
             color: black !important;
         }
 
+        /* 上部の黒い太線を消す */
+        header, .css-1dp5vir, .css-1avcm0n, .css-1rs6os {
+            border: none !important;
+            box-shadow: none !important;
+        }
+        
+        /* 入力欄の黒枠を消す */
+        input[type="text"] {
+            border: 1px solid #ccc !important;
+            background-color: white !important;
+            color: black !important;
+            box-shadow: none !important;
+        }
+        
+        /* チェック欄を白くする */
+        div[data-testid="stCheckbox"] div[role="checkbox"] {
+            background-color: white !important;
+            border: 2px solid #666 !important;
+            box-shadow: none !important;
+        }
+        .css-16idsys {
+            box-shadow: none !important;
+        }
+
     </style>
     """,
     unsafe_allow_html=True
