@@ -149,26 +149,26 @@ st.markdown(
         }
 
         /* 上部の黒い太線を消す */
-        header[data-testid="stHeader"] {
+        header[data-testid="stHeader"] div {
             box-shadow: none !important;
             border-bottom: none !important;
         }
         
         /* 入力欄の黒枠を消す */
-        div[data-baseweb="input"] > div {
+        div[data-testid="stTextInput"] > div > div {
             border: 1px solid #ccc !important;
             background-color: white !important;
-            color: black !important;
             box-shadow: none !important;
         }
         
         /* チェック欄を白くする */
-        div[data-baseweb="checkbox"] > label > div:first-child {
+        div[data-testid="stTextInput"] > div > div {
+            border: 1px solid #ccc !important;
             background-color: white !important;
-            border: 2px solid #666 !important;
             box-shadow: none !important;
         }
-
+             
+        
     </style>
     """,
     unsafe_allow_html=True
