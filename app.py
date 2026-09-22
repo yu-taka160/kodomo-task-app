@@ -277,7 +277,7 @@ for i, task in enumerate(st.session_state.tasks):
 st.markdown("""
 <style>
 /* チェック欄の黒い□を白くする（枠は消す） */
-.st-emotion-cache-x5jhx8 {
+.st-emotion-cache-ogqvre {
     background-color: white !important;
     border: none !important;
     box-shadow: none !important;
