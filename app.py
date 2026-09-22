@@ -54,13 +54,6 @@ st.markdown(
             color: black !important;
         }
 
-        /* 入力ボックス */
-        .stTextInput input {
-            background-color: white !important;
-            color: black !important;
-            border: 1px solid #ccc !important;
-        }
-
         /* 追加ボタン：白 → 押したとき赤 */
         .stButton > button {
             background-color: white !important;
@@ -156,13 +149,13 @@ st.markdown(
         }
 
         /* 上部の黒い太線を消す */
-        header, .css-1dp5vir, .css-1avcm0n, .css-1rs6os {
-            border: none !important;
+        header[data-testid="stHeader"] {
             box-shadow: none !important;
+            border-bottom: none !important;
         }
         
         /* 入力欄の黒枠を消す */
-        input[type="text"] {
+        div[data-baseweb="input"] > div {
             border: 1px solid #ccc !important;
             background-color: white !important;
             color: black !important;
@@ -170,12 +163,9 @@ st.markdown(
         }
         
         /* チェック欄を白くする */
-        div[data-testid="stCheckbox"] div[role="checkbox"] {
+        div[data-baseweb="checkbox"] > label > div:first-child {
             background-color: white !important;
             border: 2px solid #666 !important;
-            box-shadow: none !important;
-        }
-        .css-16idsys {
             box-shadow: none !important;
         }
 
