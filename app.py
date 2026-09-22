@@ -283,10 +283,23 @@ st.markdown("""
     box-shadow: none !important;
 }
 
-/* ヘッダー内のすべての影・線を完全に消す */
+/* ヘッダーの黒線・影を完全に消す */
+header[data-testid="stHeader"],
+header[data-testid="stHeader"] > div,
 header[data-testid="stHeader"] * {
     box-shadow: none !important;
     border-bottom: none !important;
+}
+
+/* ヘッダー以外の上部に影がある場合の対策 */
+section[data-testid="stSidebar"] {
+    box-shadow: none !important;
+    border-right: none !important;
+}
+
+div[data-testid="stAppViewContainer"] {
+    box-shadow: none !important;
+    border-top: none !important;
 }
 </style>
 """, unsafe_allow_html=True)
