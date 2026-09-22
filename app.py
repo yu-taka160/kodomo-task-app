@@ -334,6 +334,14 @@ div.st-emotion-cache-1vo6xi6.ep3ma5o1 {
     background-color: white !important;
 }
 
+/* 黒線の本体（最上位の親） */
+div.st-emotion-cache-1ndxyp5.ep3ma5o3 {
+    background-color: white !important;
+    border: none !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+}
+
 </style>
 """, unsafe_allow_html=True)
 
