@@ -283,9 +283,7 @@ st.markdown("""
     box-shadow: none !important;
 }
 
-/* ヘッダーの黒線・影を完全に消す */
-header[data-testid="stHeader"],
-header[data-testid="stHeader"] > div,
+/* ヘッダー内のすべての影・線を完全に消す */
 header[data-testid="stHeader"] * {
     box-shadow: none !important;
     border-bottom: none !important;
