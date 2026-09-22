@@ -276,17 +276,10 @@ for i, task in enumerate(st.session_state.tasks):
 
 st.markdown("""
 <style>
-/* チェック欄を白くする */
-div[data-baseweb="checkbox"] label > div {
+/* チェック欄の黒い□を白くする（枠は消す） */
+.st-emotion-cache-x5jhs8 {
     background-color: white !important;
-    border: 2px solid #666 !important;
-    box-shadow: none !important;
-}
-
-/* チェック欄の黒い□を白くする */
-.st-emotion-cache-x5jhx8 {
-    background-color: white !important;
-    border: 2px solid #666 !important;
+    border: none !important;
     box-shadow: none !important;
 }
 
