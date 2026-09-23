@@ -307,39 +307,8 @@ div.st-emotion-cache-8atqhb.e1zj3zg0 {
     border-top: none !important;
 }
 
-/* 黒線の本体（親要素） */
-div.st-emotion-cache-1vo6xi6.ep3ma5o1 {
-    box-shadow: none !important;
-    border: none !important;
-    border-top: none !important;
-    border-bottom: none !important;
-    border-color: transparent !important;
-}
-
-/* 単体クラスにも適用（階層対策） */
-div.st-emotion-cache-1vo6xi6,
-div.ep3ma5o1 {
-    box-shadow: none !important;
-    border: none !important;
-    border-top: none !important;
-    border-bottom: none !important;
-    border-color: transparent !important;
-}
-
-div[data-testid="stAppViewContainer"] {
-    background-color: white !important;
-}
-
-div.st-emotion-cache-1vo6xi6.ep3ma5o1 {
-    background-color: white !important;
-}
-
-/* 黒線の本体（最上位の親） */
-div.st-emotion-cache-1ndxyp5.ep3ma5o3 {
-    background-color: white !important;
-    border: none !important;
-    border-color: transparent !important;
-    box-shadow: none !important;
+body, div[data-testid="stAppViewContainer"] {
+    background-color: #fff8e6 !important;  /* アイボリー */
 }
 
 </style>
@@ -360,7 +329,7 @@ if total > 0:
         <div style="
             width: 100%;
             height: 20px;
-            background-color: white;
+            background-color: #fff8e6;
             border: 1px solid #ccc;
             border-radius: 5px;
             overflow: hidden;
