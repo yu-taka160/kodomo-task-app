@@ -181,9 +181,10 @@ st.markdown(
 # =========================
 #     アプリ本体
 # =========================
-st.markdown("<div style='height:120px;'></div>", unsafe_allow_html=True)
-
-st.title("こどもタスクチェックアプリ")
+st.markdown("""
+<div style='height:120px;'></div>
+<h1 style='color:#FF8C00;'>こどもタスクチェックアプリ</h1>
+""", unsafe_allow_html=True)
 
 # --- タスクを保存するための session_state ---
 if "tasks" not in st.session_state:
