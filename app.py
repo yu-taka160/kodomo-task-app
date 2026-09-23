@@ -338,6 +338,11 @@ div.stElementContainer {
     border-color: #FFF8E7 !important;
 }
 
+/* Streamlit 固定ヘッダーを背景色と同化させる */
+header[data-testid="stHeader"] {
+    background-color: #FFF8E7 !important;
+}
+
 </style>
 """, unsafe_allow_html=True)
 
