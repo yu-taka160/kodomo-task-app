@@ -280,6 +280,17 @@ div[role="checkbox"] > div {
     background-color: white !important;
 }
 
+/* チェック欄の枠を確実に復活させる（最終版） */
+div[role="checkbox"]::before {
+    content: "";
+    display: block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #d9d9d9 !important;
+    border-radius: 4px;
+    background-color: white;
+}
+
 /* ヘッダーの黒線・影を完全に消す */
 header[data-testid="stHeader"],
 header[data-testid="stHeader"] > div,
