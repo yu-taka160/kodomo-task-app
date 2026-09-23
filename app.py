@@ -132,12 +132,7 @@ st.markdown(
             border: none !important;
             box-shadow: none !important;
         }
-        
-        div[role="checkbox"] {
-            background-color: white !important;
-            border: 2px solid #666 !important;
-        }
-        
+                
         div[data-testid="stProgress"] div {
             background-color: white !important;
         }
@@ -310,36 +305,14 @@ div[data-testid="stAppViewContainer"] {
     border-top: none !important;
 }
 
-div.st-emotion-cache-8atqhb.e1zj3zg0 {
-    box-shadow: none !important;
-    border-top: none !important;
-}
-
 body, div[data-testid="stAppViewContainer"] {
     background-color: #fff8e6 !important;  /* アイボリー */
-}
-
-div.stVerticalBlock {
-    border-top: none !important;
-}
-div.stElementContainer {
-    border-top: none !important;
-}
-
-/* 黒線を背景色と同化させて見えなくする */
-* {
-    border-color: #FFF8E7 !important;
 }
 
 /* 黒線の最上位の親を消す */
 [data-testid="stAppViewContainer"] > div:first-child {
     border-bottom: none !important;
     box-shadow: none !important;
-}
-
-/* 黒線を背景色と同化させて見えなくする（最終案） */
-[data-testid="stAppViewContainer"] * {
-    border-color: #FFF8E7 !important;
 }
 
 /* Streamlit 固定ヘッダーを背景色と同化させる */
