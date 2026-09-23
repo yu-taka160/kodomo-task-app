@@ -4,13 +4,9 @@ import os
 import requests
 import random
 import time
-from streamlit_js_eval import streamlit_js_eval 
 
-# 画面幅を取得
-width = streamlit_js_eval(js_expressions="window.innerWidth")
-
-if width is None:
-    width = 800
+user_agent = st.request.headers.get("User-Agent", "")
+is_mobile = "Mobile" in user_agent
 
 load_dotenv()
 
@@ -212,8 +208,8 @@ for i, task in enumerate(st.session_state.tasks):
         # スマホ用キャラセット
         mobile_animals = ["🐹", "🐷", "🐶"]
 
-        # 画面幅でスマホ判定（新しい width を使う）
-        if width < 600:
+        # スマホ判定でキャラを切り替え
+        if is_mobile:
             char = random.choice(mobile_animals)
         else:
             char = random.choice(pc_animals)
