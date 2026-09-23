@@ -159,13 +159,6 @@ st.markdown(
             background-color: white !important;
         }
 
-        /* チェックボックスの枠を復活させる（Streamlitの内部構造に対応） */
-        div[role="checkbox"] > div {
-            border: 2px solid #d9d9d9 !important;   /* 入力欄と同じ薄いグレー */
-            border-radius: 4px !important;
-            background-color: white !important;
-        }
-
         /* 入力欄の枠を復活させる */
         div[data-testid="stTextInput"] input {
             border: 1px solid #d9d9d9 !important;
