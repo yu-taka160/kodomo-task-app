@@ -327,6 +327,12 @@ div.stElementContainer {
     border-color: #FFF8E7 !important;
 }
 
+/* 黒線の最上位の親を消す */
+[data-testid="stAppViewContainer"] > div:first-child {
+    border-bottom: none !important;
+    box-shadow: none !important;
+}
+
 </style>
 """, unsafe_allow_html=True)
 
