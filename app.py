@@ -48,6 +48,10 @@ st.markdown(
         .stApp, .block-container {
             background-color: #FFF8E7;
         }
+        
+        .block-container {
+            border-top: none !important;
+        }
 
         /* 入力欄ラベル */
         .stTextInput > label {
