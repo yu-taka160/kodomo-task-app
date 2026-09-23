@@ -280,11 +280,11 @@ for i, task in enumerate(st.session_state.tasks):
 
 st.markdown("""
 <style>
-/* チェック欄の黒い□を白くする（枠は消す） */
-.st-emotion-cache-bqwma9 {
+/* チェック欄の枠を復活させる */
+div[role="checkbox"] > div {
+    border: 2px solid #d9d9d9 !important;
+    border-radius: 4px !important;
     background-color: white !important;
-    border: none !important;
-    box-shadow: none !important;
 }
 
 /* ヘッダーの黒線・影を完全に消す */
