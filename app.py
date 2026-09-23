@@ -329,8 +329,8 @@ if total > 0:
         <div style="
             width: 100%;
             height: 20px;
-            background-color: #fff8e6;
-            border: 1px solid #ccc;
+            background-color: white;  /* 枠は白のまま */
+            border: 1px solid transparent;  /* ← 黒線の原因を消す */            
             border-radius: 5px;
             overflow: hidden;
             margin-bottom: 10px;
