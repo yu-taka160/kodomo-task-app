@@ -181,7 +181,7 @@ st.markdown(
 # =========================
 #     アプリ本体
 # =========================
-st.markdown("<div style='height:20px;'></div>", unsafe_allow_html=True)
+st.markdown("<div style='height:40px;'></div>", unsafe_allow_html=True)
 
 st.title("こどもタスクチェックアプリ")
 
