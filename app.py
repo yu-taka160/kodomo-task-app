@@ -322,6 +322,11 @@ div.stElementContainer {
     border-top: none !important;
 }
 
+/* 黒線を背景色と同化させて見えなくする */
+* {
+    border-color: #FFF8E7 !important;
+}
+
 </style>
 """, unsafe_allow_html=True)
 
