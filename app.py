@@ -151,28 +151,14 @@ st.markdown(
             background-color: white !important;
             color: black !important;
         }
-
-        /* ヘッダーの黒い線・影を消す（Emotion CSS） */
-        .css-1dp5vir, .css-1avcm0n {
-            box-shadow: none !important;
-            border-bottom: none !important;
-        }
         
-        /* 入力欄の黒枠を消す */
-        div[data-testid="stTextInput"] > div > div {
-            border: 1px solid #ccc !important;
+        /* チェック欄にうっすら枠をつける */
+        div[role="checkbox"] {
+            border: 2px solid #d9d9d9 !important;
+            border-radius: 4px !important;
             background-color: white !important;
-            box-shadow: none !important;
         }
-        
-         /* チェックボックスの黒枠を消す（Emotion CSS） */
-        .css-1p0v0p6, .css-16idsys {
-            background-color: white !important;
-            border: 2px solid #666 !important;
-            box-shadow: none !important;
-        }
-            
-        
+                  
     </style>
     """,
     unsafe_allow_html=True
