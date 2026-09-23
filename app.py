@@ -311,6 +311,13 @@ body, div[data-testid="stAppViewContainer"] {
     background-color: #fff8e6 !important;  /* アイボリー */
 }
 
+div.stVerticalBlock {
+    border-top: none !important;
+}
+div.stElementContainer {
+    border-top: none !important;
+}
+
 </style>
 """, unsafe_allow_html=True)
 
