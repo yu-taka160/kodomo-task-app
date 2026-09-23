@@ -165,6 +165,13 @@ st.markdown(
             border-radius: 4px !important;
             background-color: white !important;
         }
+
+        /* 入力欄の枠を復活させる */
+        div[data-testid="stTextInput"] input {
+            border: 1px solid #d9d9d9 !important;
+            border-radius: 4px !important;
+            background-color: white !important;
+        }
           
     </style>
     """,
