@@ -15,7 +15,32 @@ pc_animals = ["🐰", "🐣", "🐧"]
 # スマホ用キャラセット
 mobile_animals = ["🐹", "🐶", "🐷"]
 
-st.write("User-Agent:", ua)
+st.markdown("""
+<style>
+@media screen and (max-width: 600px) {
+    #mobile-flag {
+        display: block;
+    }
+}
+#mobile-flag {
+    display: none;
+}
+</style>
+
+<input type="hidden" id="mobile-flag" value="true">
+""", unsafe_allow_html=True)
+
+st.markdown("""
+<script>
+const flag = document.getElementById("mobile-flag").value;
+const params = new URLSearchParams(window.location.search);
+params.set("mobile_flag", flag);
+window.history.replaceState({}, "", `${location.pathname}?${params}`);
+</script>
+""", unsafe_allow_html=True)
+
+params = st.query_params
+is_mobile = params.get("mobile_flag") == "true"
 
 load_dotenv()
 
