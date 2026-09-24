@@ -175,34 +175,6 @@ st.markdown(
 st.markdown("<div style='height:10px;'></div>", unsafe_allow_html=True)
 st.markdown("<h1 style='color:#FF8C00;'>こどもタスクチェックアプリ</h1>", unsafe_allow_html=True)
 
-# --- スマホ判定（CSS＋hidden input方式） ---
-st.markdown("""
-<style>
-@media screen and (max-width: 600px) {
-    #mobile-flag {
-        display: block;
-    }
-}
-#mobile-flag {
-    display: none;
-}
-</style>
-
-<input type="hidden" id="mobile-flag" value="true">
-""", unsafe_allow_html=True)
-
-st.markdown("""
-<script>
-const flag = document.getElementById("mobile-flag").value;
-const params = new URLSearchParams(window.location.search);
-params.set("mobile_flag", flag);
-window.history.replaceState({}, "", `${location.pathname}?${params}`);
-</script>
-""", unsafe_allow_html=True)
-
-params = st.query_params
-is_mobile = params.get("mobile_flag") == "true"
-
 # --- タスクを保存するための session_state ---
 if "tasks" not in st.session_state:
     st.session_state.tasks = []
