@@ -6,7 +6,7 @@ import random
 import time
 import re
 
-ua = st.session_state.get("_browser", "")
+ua = st.session_state.get("_browser") or st.session_state.get("_user_agent") or ""
 is_mobile = bool(re.search("Mobile|Android|iPhone|iPad", ua))
 
 # PC用キャラセット
