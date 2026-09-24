@@ -17,10 +17,10 @@ window.parent.postMessage({isStreamlitMessage: true, width: width}, "*");
 """, unsafe_allow_html=True)
 
 # JS から送られた width を受け取る
-message = st.experimental_get_query_params()
+message = st.query_params
 if "width" in message:
     try:
-        st.session_state.width = int(message["width"][0])
+        st.session_state.width = int(message["width"])
     except:
         pass
 
