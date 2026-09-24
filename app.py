@@ -5,8 +5,26 @@ import requests
 import random
 import time
 
-user_agent = st.request.headers.get("User-Agent", "")
-is_mobile = "Mobile" in user_agent
+# --- 画面幅を取得する（streamlit_js_eval を使わない安全な方法） ---
+if "width" not in st.session_state:
+    st.session_state.width = 800  # 初期値
+
+st.markdown("""
+<script>
+const width = window.innerWidth;
+window.parent.postMessage({isStreamlitMessage: true, width: width}, "*");
+</script>
+""", unsafe_allow_html=True)
+
+# JS から送られた width を受け取る
+message = st.experimental_get_query_params()
+if "width" in message:
+    try:
+        st.session_state.width = int(message["width"][0])
+    except:
+        pass
+
+width = st.session_state.width
 
 load_dotenv()
 
