@@ -15,8 +15,6 @@ pc_animals = ["🐰", "🐣", "🐧"]
 # スマホ用キャラセット
 mobile_animals = ["🐹", "🐶", "🐷"]
 
-load_dotenv()
-
 # --- スマホ判定（CSS＋hidden input方式） ---
 st.markdown("""
 <style>
@@ -44,6 +42,9 @@ window.history.replaceState({}, "", `${location.pathname}?${params}`);
 
 params = st.query_params
 is_mobile = params.get("mobile_flag") == "true"
+
+load_dotenv()
+
 endpoint = os.getenv("AZURE_LANGUAGE_ENDPOINT")
 key = os.getenv("AZURE_LANGUAGE_KEY")
 region = os.getenv("AZURE_LANGUAGE_REGION")
