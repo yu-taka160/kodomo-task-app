@@ -4,6 +4,10 @@ import os
 import requests
 import random
 import time
+import re
+
+ua = st.session_state.get("_browser", "")
+is_mobile = bool(re.search("Mobile|Android|iPhone|iPad", ua))
 
 is_mobile = False
 
@@ -31,6 +35,11 @@ window.parent.postMessage({type: "width", value: width}, "*");
 """, unsafe_allow_html=True)
 
 # Python 側で受け取る
+def receive_width():
+    return st.session_state.get("latest_width", None)
+
+st.experimental_js(receive_width)
+
 event = st.experimental_get_event()
 if event and event.get("type") == "width":
     st.session_state.width = event.get("value", 800)
