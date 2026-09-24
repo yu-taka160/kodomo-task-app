@@ -15,6 +15,8 @@ pc_animals = ["🐰", "🐣", "🐧"]
 # スマホ用キャラセット
 mobile_animals = ["🐹", "🐶", "🐷"]
 
+st.write("User-Agent:", ua)
+
 load_dotenv()
 
 endpoint = os.getenv("AZURE_LANGUAGE_ENDPOINT")
