@@ -9,48 +9,11 @@ import re
 ua = st.session_state.get("_browser", "")
 is_mobile = bool(re.search("Mobile|Android|iPhone|iPad", ua))
 
-is_mobile = False
+# PC用キャラセット
+pc_animals = ["🐰", "🐣", "🐧"]
 
-# --- 画面幅を取得する（streamlit_js_eval を使わない安全な方法） ---
-if "width" not in st.session_state:
-    st.session_state.width = 800  # 初期値
-
-st.markdown("""
-<script>
-const width = window.innerWidth;
-window.parent.postMessage({isStreamlitMessage: true, width: width}, "*");
-</script>
-""", unsafe_allow_html=True)
-
-# --- 画面幅を取得する（postMessage を正しく受け取る方法） ---
-if "width" not in st.session_state:
-    st.session_state.width = 800  # 初期値
-
-# JS で画面幅を送る
-st.markdown("""
-<script>
-const width = window.innerWidth;
-window.parent.postMessage({type: "width", value: width}, "*");
-</script>
-""", unsafe_allow_html=True)
-
-# Python 側で受け取る
-def receive_width():
-    return st.session_state.get("latest_width", None)
-
-st.experimental_js(receive_width)
-
-event = st.experimental_get_event()
-if event and event.get("type") == "width":
-    st.session_state.width = event.get("value", 800)
-
-width = st.session_state.width
-
-# --- 画面幅でスマホ判定（本物の is_mobile を更新） ---
-if width < 600:
-    is_mobile = True
-else:
-    is_mobile = False
+# スマホ用キャラセット
+mobile_animals = ["🐹", "🐶", "🐷"]
 
 load_dotenv()
 
@@ -246,12 +209,6 @@ for i, task in enumerate(st.session_state.tasks):
         done_count = sum(1 for t in st.session_state.tasks if t["done"])
         remaining = len(st.session_state.tasks) - done_count
         
-        # PC用キャラセット
-        pc_animals = ["🐰", "🐣", "🐧"]
-        
-        # スマホ用キャラセット
-        mobile_animals = ["🐹", "🐷", "🐶"]
-
         # スマホ判定でキャラを切り替え
         if is_mobile:
             char = random.choice(mobile_animals)
