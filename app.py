@@ -175,6 +175,24 @@ st.markdown(
 st.markdown("<div style='height:10px;'></div>", unsafe_allow_html=True)
 st.markdown("<h1 style='color:#FF8C00;'>こどもタスクチェックアプリ</h1>", unsafe_allow_html=True)
 
+st.markdown("""
+<style>
+/* PC用キャラ（デフォルト） */
+.animal-char::before {
+    content: "🐰";
+    font-size: 50px;
+}
+
+/* スマホだけキャラを上書き */
+@media screen and (max-width: 600px) {
+    .animal-char::before {
+        content: "🐹";   /* ← スマホ用キャラ */
+        font-size: 40px;
+    }
+}
+</style>
+""", unsafe_allow_html=True)
+
 # --- タスクを保存するための session_state ---
 if "tasks" not in st.session_state:
     st.session_state.tasks = []
@@ -208,13 +226,7 @@ for i, task in enumerate(st.session_state.tasks):
 
         done_count = sum(1 for t in st.session_state.tasks if t["done"])
         remaining = len(st.session_state.tasks) - done_count
-        
-        # スマホ判定でキャラを切り替え
-        if is_mobile:
-            char = random.choice(mobile_animals)
-        else:
-            char = random.choice(pc_animals)
-        
+
         dance = {
             "🐰": ["🐰", "✨", "🐰", "💫", "🐰"],
             "🐣": ["🐣", "💫", "🐣", "✨", "🐣"],
@@ -241,16 +253,15 @@ for i, task in enumerate(st.session_state.tasks):
         )
 
         placeholder = st.empty()
-        frames = dance[char]
-
+ 
         for frame in frames:
             row1_count = min(done_count, 12)
             row2_count = min(max(done_count - 12, 0), 12)
             row3_count = max(done_count - 24, 0)
 
-            row1 = ''.join([f"<span class='emoji-frame'>{frame}</span>" for _ in range(row1_count)])
-            row2 = ''.join([f"<span class='emoji-frame'>{frame}</span>" for _ in range(row2_count)])
-            row3 = ''.join([f"<span class='emoji-frame'>{frame}</span>" for _ in range(row3_count)])
+            row1 = ''.join(["<span class='emoji-frame'></span>" for _ in range(row1_count)])
+            row2 = ''.join(["<span class='emoji-frame'></span>" for _ in range(row2_count)])
+            row3 = ''.join(["<span class='emoji-frame'></span>" for _ in range(row3_count)])
 
             placeholder.markdown(
                 f"""
