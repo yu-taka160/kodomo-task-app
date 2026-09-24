@@ -5,6 +5,8 @@ import requests
 import random
 import time
 
+is_mobile = False
+
 # --- 画面幅を取得する（streamlit_js_eval を使わない安全な方法） ---
 if "width" not in st.session_state:
     st.session_state.width = 800  # 初期値
@@ -25,6 +27,12 @@ if "width" in message:
         pass
 
 width = st.session_state.width
+
+# --- 画面幅でスマホ判定（本物の is_mobile を更新） ---
+if width < 600:
+    is_mobile = True
+else:
+    is_mobile = False
 
 load_dotenv()
 
