@@ -18,13 +18,22 @@ window.parent.postMessage({isStreamlitMessage: true, width: width}, "*");
 </script>
 """, unsafe_allow_html=True)
 
-# JS から送られた width を受け取る
-message = st.query_params
-if "width" in message:
-    try:
-        st.session_state.width = int(message["width"])
-    except:
-        pass
+# --- 画面幅を取得する（postMessage を正しく受け取る方法） ---
+if "width" not in st.session_state:
+    st.session_state.width = 800  # 初期値
+
+# JS で画面幅を送る
+st.markdown("""
+<script>
+const width = window.innerWidth;
+window.parent.postMessage({type: "width", value: width}, "*");
+</script>
+""", unsafe_allow_html=True)
+
+# Python 側で受け取る
+event = st.experimental_get_event()
+if event and event.get("type") == "width":
+    st.session_state.width = event.get("value", 800)
 
 width = st.session_state.width
 
