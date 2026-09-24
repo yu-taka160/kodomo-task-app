@@ -254,25 +254,18 @@ for i, task in enumerate(st.session_state.tasks):
 
         placeholder = st.empty()
  
-        for frame in frames:
-            row1_count = min(done_count, 12)
-            row2_count = min(max(done_count - 12, 0), 12)
-            row3_count = max(done_count - 24, 0)
-
-            row1 = ''.join(["<span class='emoji-frame'></span>" for _ in range(row1_count)])
-            row2 = ''.join(["<span class='emoji-frame'></span>" for _ in range(row2_count)])
-            row3 = ''.join(["<span class='emoji-frame'></span>" for _ in range(row3_count)])
-
-            placeholder.markdown(
-                f"""
-                <div style='display:flex; align-items:center; color:green;'>{row1}</div>
-                <div style='display:flex; align-items:center; color:green;'>{row2}</div>
-                <div style='display:flex; align-items:center; color:green;'>{row3}</div>
-                """,
-                unsafe_allow_html=True
-            )
-
-            time.sleep(0.3)
+        row1 = ''.join(["<span class='emoji-frame'></span>" for _ in range(row1_count)])
+        row2 = ''.join(["<span class='emoji-frame'></span>" for _ in range(row2_count)])
+        row3 = ''.join(["<span class='emoji-frame'></span>" for _ in range(row3_count)])
+        
+        placeholder.markdown(
+            f"""
+            <div style='display:flex; align-items:center; color:green;'>{row1}</div>
+            <div style='display:flex; align-items:center; color:green;'>{row2}</div>
+            <div style='display:flex; align-items:center; color:green;'>{row3}</div>
+            """,
+            unsafe_allow_html=True
+        )
 
 st.markdown("""
 <style>
