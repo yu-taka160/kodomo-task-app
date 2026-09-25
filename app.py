@@ -222,8 +222,8 @@ for i, task in enumerate(st.session_state.tasks):
     checked = st.checkbox(task["name"], key=f"task_{i}")
     task["done"] = checked   # ← これだけでOK
     
-        done_count = sum(1 for t in st.session_state.tasks if t["done"])
-        remaining = len(st.session_state.tasks) - done_count
+done_count = sum(1 for t in st.session_state.tasks if t["done"])
+remaining = len(st.session_state.tasks) - done_count
 
         dance = {
             "🐰": ["🐰", "✨", "🐰", "💫", "🐰"],
