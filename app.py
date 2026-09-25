@@ -178,14 +178,14 @@ st.markdown("<h1 style='color:#FF8C00;'>こどもタスクチェックアプリ<
 st.markdown("""
 <style>
 /* PC用キャラ（デフォルト） */
-.animal-char::before {
+.emoji-frame::before {
     content: "🐰";
     font-size: 50px;
 }
 
 /* スマホだけキャラを上書き */
 @media screen and (max-width: 600px) {
-    .animal-char::before {
+    .emoji-frame::before {
         content: "🐹";   /* ← スマホ用キャラ */
         font-size: 40px;
     }
@@ -221,53 +221,57 @@ messages = [
 for i, task in enumerate(st.session_state.tasks):
     checked = st.checkbox(task["name"], key=f"task_{i}")
     task["done"] = checked   # ← これだけでOK
-    
-done_count = sum(1 for t in st.session_state.tasks if t["done"])
-remaining = len(st.session_state.tasks) - done_count
 
-dance = {
-    "🐰": ["🐰", "✨", "🐰", "💫", "🐰"],
-    "🐣": ["🐣", "💫", "🐣", "✨", "🐣"],
-    "🐧": ["🐧", "✨", "🐧", "💫", "🐧"],
-    "🐹": ["🐹", "✨", "🐹", "💫", "🐹"],
-    "🐷": ["🐷", "💫", "🐷", "✨", "🐷"],
-    "🐶": ["🐶", "✨", "🐶", "💫", "🐶"]
-}
-
-if remaining == 0:
-    message = "ミッションかんりょう✌"
-elif remaining == 1:
-    message = "あとすこしでコンプリート！レッツゴー！"
+# ここで「タスクが0個ならメッセージを出さない」
+if len(st.session_state.tasks) == 0:
+    st.write("まだミッションがないよ")
 else:
-    message = random.choice(messages)
-
-st.markdown(
-    f"""
-    <div style='display:flex; align-items:center;'>
-        <span class='message-green' style='font-size:35px; margin-left:8px;'>「{message}」</span>
-    </div>
-    """,
-    unsafe_allow_html=True
-)
-
-row1_count = min(done_count, 12)
-row2_count = min(max(done_count - 12, 0), 12)
-row3_count = max(done_count - 24, 0)
-
-placeholder = st.empty()
-
-row1 = ''.join(["<span class='emoji-frame'></span>" for _ in range(row1_count)])
-row2 = ''.join(["<span class='emoji-frame'></span>" for _ in range(row2_count)])
-row3 = ''.join(["<span class='emoji-frame'></span>" for _ in range(row3_count)])
-
-placeholder.markdown(
-    f"""
-    <div style='display:flex; align-items:center; color:green;'>{row1}</div>
-    <div style='display:flex; align-items:center; color:green;'>{row2}</div>
-    <div style='display:flex; align-items:center; color:green;'>{row3}</div>
-    """,
-    unsafe_allow_html=True
-)
+    done_count = sum(1 for t in st.session_state.tasks if t["done"])
+    remaining = len(st.session_state.tasks) - done_count
+    
+    dance = {
+        "🐰": ["🐰", "✨", "🐰", "💫", "🐰"],
+        "🐣": ["🐣", "💫", "🐣", "✨", "🐣"],
+        "🐧": ["🐧", "✨", "🐧", "💫", "🐧"],
+        "🐹": ["🐹", "✨", "🐹", "💫", "🐹"],
+        "🐷": ["🐷", "💫", "🐷", "✨", "🐷"],
+        "🐶": ["🐶", "✨", "🐶", "💫", "🐶"]
+    }
+    
+    if remaining == 0:
+        message = "ミッションかんりょう✌"
+    elif remaining == 1:
+        message = "あとすこしでコンプリート！レッツゴー！"
+    else:
+        message = random.choice(messages)
+    
+    st.markdown(
+        f"""
+        <div style='display:flex; align-items:center;'>
+            <span class='message-green' style='font-size:35px; margin-left:8px;'>「{message}」</span>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+    
+    row1_count = min(done_count, 12)
+    row2_count = min(max(done_count - 12, 0), 12)
+    row3_count = max(done_count - 24, 0)
+    
+    placeholder = st.empty()
+    
+    row1 = ''.join(["<span class='emoji-frame'></span>" for _ in range(row1_count)])
+    row2 = ''.join(["<span class='emoji-frame'></span>" for _ in range(row2_count)])
+    row3 = ''.join(["<span class='emoji-frame'></span>" for _ in range(row3_count)])
+    
+    placeholder.markdown(
+        f"""
+        <div style='display:flex; align-items:center; color:green;'>{row1}</div>
+        <div style='display:flex; align-items:center; color:green;'>{row2}</div>
+        <div style='display:flex; align-items:center; color:green;'>{row3}</div>
+        """,
+        unsafe_allow_html=True
+    )
 
 st.markdown("""
 <style>
