@@ -251,9 +251,13 @@ for i, task in enumerate(st.session_state.tasks):
             """,
             unsafe_allow_html=True
         )
-
+        
+        row1_count = min(done_count, 12)
+        row2_count = min(max(done_count - 12, 0), 12)
+        row3_count = max(done_count - 24, 0)
+    
         placeholder = st.empty()
- 
+        
         row1 = ''.join(["<span class='emoji-frame'></span>" for _ in range(row1_count)])
         row2 = ''.join(["<span class='emoji-frame'></span>" for _ in range(row2_count)])
         row3 = ''.join(["<span class='emoji-frame'></span>" for _ in range(row3_count)])
