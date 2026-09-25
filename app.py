@@ -225,6 +225,7 @@ for i, task in enumerate(st.session_state.tasks):
 # ここで「タスクが0個ならメッセージを出さない」
 if len(st.session_state.tasks) == 0:
     st.write("まだミッションがないよ")
+    st.write("")
 else:
     done_count = sum(1 for t in st.session_state.tasks if t["done"])
     remaining = len(st.session_state.tasks) - done_count
@@ -237,23 +238,27 @@ else:
         "🐷": ["🐷", "💫", "🐷", "✨", "🐷"],
         "🐶": ["🐶", "✨", "🐶", "💫", "🐶"]
     }
-    
-    if remaining == 0:
-        message = "ミッションかんりょう✌"
-    elif remaining == 1:
-        message = "あとすこしでコンプリート！レッツゴー！"
-    else:
-        message = random.choice(messages)
-    
-    st.markdown(
-        f"""
-        <div style='display:flex; align-items:center;'>
-            <span class='message-green' style='font-size:35px; margin-left:8px;'>「{message}」</span>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-    
+    # ★ チェックされていないときはメッセージもキャラも出さない
+    if done_count == 0:
+        pass
+    else:    
+        # ここからいつもの処理
+        if remaining == 0:
+            message = "ミッションかんりょう✌"
+        elif remaining == 1:
+            message = "あとすこしでコンプリート！レッツゴー！"
+        else:
+            message = random.choice(messages)
+
+        st.markdown(
+            f"""
+            <div style='display:flex; align-items:center;'>
+                <span class='message-green' style='font-size:35px; margin-left:8px;'>「{message}」</span>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )    
+             
     row1_count = min(done_count, 12)
     row2_count = min(max(done_count - 12, 0), 12)
     row3_count = max(done_count - 24, 0)
