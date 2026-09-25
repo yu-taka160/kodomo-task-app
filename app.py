@@ -264,16 +264,18 @@ else:
             """,
             unsafe_allow_html=True
         )    
-             
+
+        current_animal = animals[(done_count - 1) % len(animals)]
+        
         row1_count = min(done_count, 12)
         row2_count = min(max(done_count - 12, 0), 12)
         row3_count = max(done_count - 24, 0)
 
-        placeholder = st.empty()
-
-        row1 = ''.join([f"<span class='emoji-frame'>{animals[i % len(animals)]}</span>" for i in range(row1_count)])
-        row2 = ''.join([f"<span class='emoji-frame'>{animals[i % len(animals)]}</span>" for i in range(row2_count)])
-        row3 = ''.join([f"<span class='emoji-frame'>{animals[i % len(animals)]}</span>" for i in range(row3_count)])
+        row1 = ''.join([f"<span class='emoji-frame'>{current_animal}</span>" for _ in range(row1_count)])
+        row2 = ''.join([f"<span class='emoji-frame'>{current_animal}</span>" for _ in range(row2_count)])
+        row3 = ''.join([f"<span class='emoji-frame'>{current_animal}</span>" for _ in range(row3_count)])
+        
+        placeholder = st.empty() 
         
         placeholder.markdown(
             f"""
