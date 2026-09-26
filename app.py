@@ -207,9 +207,6 @@ ua = params.get("ua", "")
 
 is_mobile = bool(re.search("Mobile|Android|iPhone|iPad", ua))
 
-pc_animals = ["🐰", "🐣", "🐧" ]
-mobile_animals = ["🐹", "🐷", "🐶"]
-
 animals = mobile_animals if is_mobile else pc_animals
 
 st.markdown("""
