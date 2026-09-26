@@ -177,12 +177,22 @@ st.markdown("<h1 style='color:#FF8C00;'>こどもタスクチェックアプリ<
 
 st.markdown("""
 <style>
-/* PC用キャラ（デフォルト） */
+/* PC用（デフォルト） */
+body {
+    --device: "pc";
+}
+
+/* スマホだけ device を mobile にする */
+@media screen and (max-width: 600px) {
+    body {
+        --device: "mobile";
+    }
+}
+
+/* emoji-frame のサイズだけ指定（方法①のまま） */
 .emoji-frame {
     font-size: 50px;
 }
-
-/* スマホだけキャラを上書き */
 @media screen and (max-width: 600px) {
     .emoji-frame {
         font-size: 40px;
@@ -191,13 +201,27 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-ua = st.session_state.get("_browser") or st.session_state.get("_user_agent") or ""
-is_mobile = bool(re.search("Mobile|Android|iPhone|iPad", ua))
+st.markdown("""
+<script>
+const device = getComputedStyle(document.body).getPropertyValue('--device').replace(/"/g, '');
+window.parent.postMessage({device: device}, "*");
+</script>
+""", unsafe_allow_html=True)
+
+if "device" not in st.session_state:
+    st.session_state.device = "pc"
+
+def _device_listener():
+    msg = st.experimental_get_query_params().get("device")
+    if msg:
+        st.session_state.device = msg[0]
+
+_device_listener()
 
 pc_animals = ["🐰", "🐣", "🐧"]
 mobile_animals = ["🐹", "🐶", "🐷"]
 
-animals = mobile_animals if is_mobile else pc_animals
+animals = mobile_animals if st.session_state.device == "mobile" else pc_animals
 
 # --- タスクを保存するための session_state ---
 if "tasks" not in st.session_state:
@@ -271,12 +295,13 @@ else:
         row2_count = min(max(done_count - 12, 0), 12)
         row3_count = max(done_count - 24, 0)
 
+        current_animal = animals[(done_count - 1) % len(animals)]
+        
         row1 = ''.join([f"<span class='emoji-frame'>{current_animal}</span>" for _ in range(row1_count)])
         row2 = ''.join([f"<span class='emoji-frame'>{current_animal}</span>" for _ in range(row2_count)])
         row3 = ''.join([f"<span class='emoji-frame'>{current_animal}</span>" for _ in range(row3_count)])
         
-        placeholder = st.empty() 
-        
+        placeholder = st.empty()
         placeholder.markdown(
             f"""
             <div style='display:flex; align-items:center; color:green;'>{row1}</div>
