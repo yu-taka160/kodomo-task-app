@@ -6,14 +6,32 @@ import random
 import time
 import re
 
-ua = st.session_state.get("_browser") or st.session_state.get("_user_agent") or ""
+# =========================
+# UA（スマホ判定）新方式
+# =========================
+
+# UAをJSで取得してURLパラメータに入れる
+st.markdown("""
+<script>
+const ua = navigator.userAgent;
+const params = new URLSearchParams(window.location.search);
+params.set("ua", ua);
+window.history.replaceState({}, "", `${location.pathname}?${params}`);
+</script>
+""", unsafe_allow_html=True)
+
+# Python側でUAを受け取る
+params = st.query_params
+ua = params.get("ua", "")
+
+# スマホ判定
 is_mobile = bool(re.search("Mobile|Android|iPhone|iPad", ua))
 
-# PC用キャラセット
+# キャラセット（ここだけで定義する）
 pc_animals = ["🐰", "🐣", "🐧"]
-
-# スマホ用キャラセット
 mobile_animals = ["🐹", "🐶", "🐷"]
+
+animals = mobile_animals if is_mobile else pc_animals
 
 load_dotenv()
 
