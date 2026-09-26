@@ -293,7 +293,7 @@ else:
             unsafe_allow_html=True
         )    
 
-        current_animal = animals[(done_count - 1) % len(animals)]
+        current_animal = dance[animals[(done_count - 1) % len(animals)]][done_count % 5]
         
         row1_count = min(done_count, 12)
         row2_count = min(max(done_count - 12, 0), 12)
