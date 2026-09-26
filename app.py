@@ -176,6 +176,25 @@ st.markdown("<div style='height:10px;'></div>", unsafe_allow_html=True)
 st.markdown("<h1 style='color:#FF8C00;'>こどもタスクチェックアプリ</h1>", unsafe_allow_html=True)
 
 st.markdown("""
+<script>
+const ua = navigator.userAgent;
+const params = new URLSearchParams(window.location.search);
+params.set("ua", ua);
+window.history.replaceState({}, "", `${location.pathname}?${params}`);
+</script>
+""", unsafe_allow_html=True)
+
+params = st.query_params
+ua = params.get("ua", "")
+
+is_mobile = bool(re.search("Mobile|Android|iPhone|iPad", ua))
+
+pc_animals = ["🐰", "🐣", "🐧" ]
+mobile_animals = ["🐹", "🐷", "🐶"]
+
+animals = mobile_animals if is_mobile else pc_animals
+
+st.markdown("""
 <style>
 /* PC用（デフォルト） */
 body {
@@ -208,20 +227,8 @@ window.parent.postMessage({device: device}, "*");
 </script>
 """, unsafe_allow_html=True)
 
-if "device" not in st.session_state:
-    st.session_state.device = "pc"
-
-def _device_listener():
-    msg = st.experimental_get_query_params().get("device")
-    if msg:
-        st.session_state.device = msg[0]
-
-_device_listener()
-
 pc_animals = ["🐰", "🐣", "🐧"]
 mobile_animals = ["🐹", "🐶", "🐷"]
-
-animals = mobile_animals if st.session_state.device == "mobile" else pc_animals
 
 # --- タスクを保存するための session_state ---
 if "tasks" not in st.session_state:
