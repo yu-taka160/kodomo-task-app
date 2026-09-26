@@ -299,9 +299,9 @@ else:
         row2_count = min(max(done_count - 12, 0), 12)
         row3_count = max(done_count - 24, 0)
         
-        row1 = ''.join([f"<span class='emoji-frame'>{current_animal}</span>" for _ in range(row1_count)])
-        row2 = ''.join([f"<span class='emoji-frame'>{current_animal}</span>" for _ in range(row2_count)])
-        row3 = ''.join([f"<span class='emoji-frame'>{current_animal}</span>" for _ in range(row3_count)])
+        row1 = ''.join([f"<span class='emoji-frame'>{emoji}</span>" for emoji in current_dance])
+        row2 = ''.join([f"<span class='emoji-frame'>{emoji}</span>" for emoji in current_dance])
+        row3 = ''.join([f"<span class='emoji-frame'>{emoji}</span>" for emoji in current_dance])
         
         placeholder = st.empty()
         placeholder.markdown(
