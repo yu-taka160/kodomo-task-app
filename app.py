@@ -196,17 +196,6 @@ animals = mobile_animals if is_mobile else pc_animals
 
 st.markdown("""
 <style>
-/* PC用（デフォルト） */
-body {
-    --device: "pc";
-}
-
-/* スマホだけ device を mobile にする */
-@media screen and (max-width: 600px) {
-    body {
-        --device: "mobile";
-    }
-}
 
 /* emoji-frame のサイズだけ指定（方法①のまま） */
 .emoji-frame {
@@ -221,14 +210,7 @@ body {
 """, unsafe_allow_html=True)
 
 st.markdown("""
-<script>
-const device = getComputedStyle(document.body).getPropertyValue('--device').replace(/"/g, '');
-window.parent.postMessage({device: device}, "*");
-</script>
 """, unsafe_allow_html=True)
-
-pc_animals = ["🐰", "🐣", "🐧"]
-mobile_animals = ["🐹", "🐶", "🐷"]
 
 # --- タスクを保存するための session_state ---
 if "tasks" not in st.session_state:
