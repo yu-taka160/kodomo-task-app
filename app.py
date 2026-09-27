@@ -32,7 +32,7 @@ if ua == "":
     """, unsafe_allow_html=True)
 
 # スマホ判定
-is_mobile = bool(re.search("Mobile|Android|iPhone|iPad", ua))
+is_mobile = bool(re.search("Mobile|Android|iPhone|iPad|iPod|Phone|Safari", ua))
 
 # キャラセット（ここだけで定義する）
 pc_animals = ["🐰", "🐣", "🐧"]
