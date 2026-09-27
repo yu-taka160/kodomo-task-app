@@ -9,12 +9,6 @@ import re
 # =========================
 # UA（スマホ判定）新方式
 # =========================
-if ua == "":
-    st.markdown("""
-    <script>
-    location.reload();
-    </script>
-    """, unsafe_allow_html=True)
 
 # UAをJSで取得してURLパラメータに入れる
 st.markdown("""
@@ -29,6 +23,13 @@ window.history.replaceState({}, "", `${location.pathname}?${params}`);
 # Python側でUAを受け取る
 params = st.query_params
 ua = params.get("ua", "")
+
+if ua == "":
+    st.markdown("""
+    <script>
+    location.reload();
+    </script>
+    """, unsafe_allow_html=True)
 
 # スマホ判定
 is_mobile = bool(re.search("Mobile|Android|iPhone|iPad", ua))
