@@ -24,6 +24,7 @@ window.history.replaceState({}, "", `${location.pathname}?${params}`);
 params = st.query_params
 ua = params.get("ua", "")
 
+# UAが空なら再読み込み
 if ua == "":
     st.markdown("""
     <script>
@@ -31,10 +32,10 @@ if ua == "":
     </script>
     """, unsafe_allow_html=True)
 
-# スマホ判定
+# スマホ判定（強化版）
 is_mobile = bool(re.search("Mobile|Android|iPhone|iPad|iPod|Phone|Safari", ua))
 
-# キャラセット（ここだけで定義する）
+# キャラセット
 pc_animals = ["🐰", "🐣", "🐧"]
 mobile_animals = ["🐹", "🐶", "🐷"]
 
