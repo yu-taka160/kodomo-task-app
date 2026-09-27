@@ -215,9 +215,6 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-st.markdown("""
-""", unsafe_allow_html=True)
-
 # --- タスクを保存するための session_state ---
 if "tasks" not in st.session_state:
     st.session_state.tasks = []
@@ -250,7 +247,6 @@ for i, task in enumerate(st.session_state.tasks):
 # ここで「タスクが0個ならメッセージを出さない」
 if len(st.session_state.tasks) == 0:
     st.write("まだミッションがないよ")
-    st.write("")
 else:
     done_count = sum(1 for t in st.session_state.tasks if t["done"])
     remaining = len(st.session_state.tasks) - done_count
@@ -265,8 +261,6 @@ else:
     }
     # ★ チェックされていないときはメッセージもキャラも出さない
     if done_count == 0:
-        pass
-    else:    
         # ここからいつもの処理
         if remaining == 0:
             message = "ミッションかんりょう✌"
@@ -306,64 +300,6 @@ else:
                 unsafe_allow_html=True
             )
             time.sleep(0.3)
-
-
-st.markdown("""
-<style>
-/* チェック欄の枠を復活させる */
-div[role="checkbox"] > div {
-    border: 2px solid #d9d9d9 !important;
-    border-radius: 4px !important;
-    background-color: white !important;
-}
-
-/* チェック欄の枠を確実に復活させる（最終版） */
-div[role="checkbox"]::before {
-    content: "";
-    display: block;
-    width: 20px;
-    height: 20px;
-    border: 2px solid #d9d9d9 !important;
-    border-radius: 4px;
-    background-color: white;
-}
-
-/* ヘッダーの黒線・影を完全に消す */
-header[data-testid="stHeader"],
-header[data-testid="stHeader"] > div,
-header[data-testid="stHeader"] * {
-    box-shadow: none !important;
-    border-bottom: none !important;
-}
-
-/* ヘッダー以外の上部に影がある場合の対策 */
-section[data-testid="stSidebar"] {
-    box-shadow: none !important;
-    border-right: none !important;
-}
-
-div[data-testid="stAppViewContainer"] {
-    box-shadow: none !important;
-    border-top: none !important;
-}
-
-body, div[data-testid="stAppViewContainer"] {
-    background-color: #fff8e6 !important;  /* アイボリー */
-}
-
-/* 黒線の最上位の親を消す */
-[data-testid="stAppViewContainer"] > div:first-child {
-    border-bottom: none !important;
-    box-shadow: none !important;
-}
-
-/* Streamlit 固定ヘッダーを背景色と同化させる */
-header[data-testid="stHeader"] {
-    background-color: #FFF8E7 !important;
-}
-
-</style>
-""", unsafe_allow_html=True)
 
 # --- 1日の達成率 ---
 total = len(st.session_state.tasks)
@@ -407,6 +343,3 @@ if total > 0:
             f"<p class='progress-text' style='color:black;'>{percent}%できたよ！</p>",
             unsafe_allow_html=True
         )
-
-else:
-    pass   # ← ここを空にする（何も表示しない）    
