@@ -9,6 +9,12 @@ import re
 # =========================
 # UA（スマホ判定）新方式
 # =========================
+if ua == "":
+    st.markdown("""
+    <script>
+    location.reload();
+    </script>
+    """, unsafe_allow_html=True)
 
 # UAをJSで取得してURLパラメータに入れる
 st.markdown("""
