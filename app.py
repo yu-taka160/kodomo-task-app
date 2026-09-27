@@ -201,17 +201,6 @@ st.markdown("<div style='height:10px;'></div>", unsafe_allow_html=True)
 st.markdown("<h1 style='color:#FF8C00;'>こどもタスクチェックアプリ</h1>", unsafe_allow_html=True)
 
 st.markdown("""
-<script>
-const ua = navigator.userAgent;
-const params = new URLSearchParams(window.location.search);
-params.set("ua", ua);
-window.history.replaceState({}, "", `${location.pathname}?${params}`);
-</script>
-""", unsafe_allow_html=True)
-
-params = st.query_params
-
-st.markdown("""
 <style>
 
 /* emoji-frame のサイズだけ指定（方法①のまま） */
