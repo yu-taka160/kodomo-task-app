@@ -299,19 +299,23 @@ else:
         row2_count = min(max(done_count - 12, 0), 12)
         row3_count = max(done_count - 24, 0)
         
-        row1 = ''.join([f"<span class='emoji-frame'>{emoji}</span>" for emoji in current_dance])
-        row2 = ''.join([f"<span class='emoji-frame'>{emoji}</span>" for emoji in current_dance])
-        row3 = ''.join([f"<span class='emoji-frame'>{emoji}</span>" for emoji in current_dance])
-        
         placeholder = st.empty()
-        placeholder.markdown(
-            f"""
-            <div style='display:flex; align-items:center; color:green;'>{row1}</div>
-            <div style='display:flex; align-items:center; color:green;'>{row2}</div>
-            <div style='display:flex; align-items:center; color:green;'>{row3}</div>
-            """,
-            unsafe_allow_html=True
-        )
+        
+        for frame in current_dance:
+            row1 = ''.join([f"<span class='emoji-frame'>{frame}</span>" for _ in range(row1_count)])
+            row2 = ''.join([f"<span class='emoji-frame'>{frame}</span>" for _ in range(row2_count)])
+            row3 = ''.join([f"<span class='emoji-frame'>{frame}</span>" for _ in range(row3_count)])
+        
+            placeholder.markdown(
+                f"""
+                <div style='display:flex; align-items:center; color:green;'>{row1}</div>
+                <div style='display:flex; align-items:center; color:green;'>{row2}</div>
+                <div style='display:flex; align-items:center; color:green;'>{row3}</div>
+                """,
+                unsafe_allow_html=True
+            )
+            time.sleep(0.3)
+
 
 st.markdown("""
 <style>
