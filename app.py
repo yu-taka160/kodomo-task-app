@@ -203,11 +203,6 @@ window.history.replaceState({}, "", `${location.pathname}?${params}`);
 """, unsafe_allow_html=True)
 
 params = st.query_params
-ua = params.get("ua", "")
-
-is_mobile = bool(re.search("Mobile|Android|iPhone|iPad", ua))
-
-animals = mobile_animals if is_mobile else pc_animals
 
 st.markdown("""
 <style>
