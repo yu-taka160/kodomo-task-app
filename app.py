@@ -7,33 +7,43 @@ import time
 import re
 
 # =========================
-# UA（スマホ判定）新方式（改良版）
+# UA（スマホ判定）components.html 方式
 # =========================
 
-# UA と画面幅を JS で取得してURLパラメータに入れる
-st.markdown("""
-<script>
-const ua = navigator.userAgent;
-const width = window.innerWidth;
-const params = new URLSearchParams(window.location.search);
-params.set("ua", ua);
-params.set("width", width);
-window.history.replaceState({}, "", `${location.pathname}?${params}`);
-</script>
-""", unsafe_allow_html=True)
+import streamlit.components.v1 as components
 
-# Python側でUAと画面幅を受け取る
-params = st.query_params
-ua = params.get("ua", "")
-width = int(params.get("width", "9999"))
-
-# UAが空なら再読み込み（JSがまだ動いていない場合）
-if ua == "":
-    st.markdown("""
+# JS を実行して UA と画面幅を取得し、postMessage で返す
+components.html(
+    """
     <script>
-    location.reload();
+    const ua = navigator.userAgent;
+    const width = window.innerWidth;
+
+    // Python に値を送る
+    const data = {ua: ua, width: width};
+    window.parent.postMessage(data, "*");
     </script>
-    """, unsafe_allow_html=True)
+    """,
+    height=0,
+)
+
+# postMessage を受け取るための仕組み
+message = st.experimental_get_query_params()
+
+# UA と width を session_state に保存
+if "ua" not in st.session_state:
+    st.session_state.ua = ""
+if "width" not in st.session_state:
+    st.session_state.width = 9999
+
+# postMessage の内容を反映
+if "ua" in message:
+    st.session_state.ua = message["ua"][0]
+if "width" in message:
+    st.session_state.width = int(message["width"][0])
+
+ua = st.session_state.ua
+width = st.session_state.width
 
 # スマホ判定（UA + 画面幅）
 is_mobile = (
@@ -47,6 +57,7 @@ mobile_animals = ["🐹", "🐶", "🐷"]
 
 animals = mobile_animals if is_mobile else pc_animals
 
+# デバッグ表示（必要なら残す）
 st.write("UA:", ua)
 st.write("width:", width)
 st.write("is_mobile:", is_mobile)
