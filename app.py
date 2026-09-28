@@ -47,6 +47,11 @@ mobile_animals = ["🐹", "🐶", "🐷"]
 
 animals = mobile_animals if is_mobile else pc_animals
 
+st.write("UA:", ua)
+st.write("width:", width)
+st.write("is_mobile:", is_mobile)
+st.write("animals:", animals)
+
 load_dotenv()
 
 endpoint = os.getenv("AZURE_LANGUAGE_ENDPOINT")
