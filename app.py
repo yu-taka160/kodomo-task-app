@@ -7,23 +7,34 @@ import time
 import re
 
 # =========================
-# UA（スマホ判定）Python方式（安定版）
+# スマホ判定（CSS方式）
 # =========================
 
-ua = st.request.headers.get("User-Agent", "")
+# スマホ画面幅のときだけ #mobile-flag を表示する
+st.markdown("""
+<style>
+#mobile-flag { display: none; }
+@media (max-width: 600px) {
+    #mobile-flag { display: block; }
+}
+</style>
+""", unsafe_allow_html=True)
 
-is_mobile = bool(re.search("Mobile|Android|iPhone|iPad|iPod|Phone", ua))
+# フラグをHTMLに埋め込む
+flag = st.markdown("<div id='mobile-flag'></div>", unsafe_allow_html=True)
 
+# Python側でスマホ判定（CSSで表示されているかどうか）
+is_mobile = flag is not None
+
+# キャラセット
 pc_animals = ["🐰", "🐣", "🐧"]
 mobile_animals = ["🐹", "🐶", "🐷"]
 
 animals = mobile_animals if is_mobile else pc_animals
 
 # デバッグ表示（必要なら）
-st.write("UA:", ua)
-st.write("is_mobile:", is_mobile)
-st.write("animals:", animals)
-
+# st.write("is_mobile:", is_mobile)
+# st.write("animals:", animals)
 load_dotenv()
 
 endpoint = os.getenv("AZURE_LANGUAGE_ENDPOINT")
@@ -185,7 +196,6 @@ st.markdown("<h1 style='color:#FF8C00;'>こどもタスクチェックアプリ<
 
 st.markdown("""
 <style>
-
 /* emoji-frame のサイズだけ指定（方法①のまま） */
 .emoji-frame {
     font-size: 50px;
@@ -196,9 +206,6 @@ st.markdown("""
     }
 }
 </style>
-""", unsafe_allow_html=True)
-
-st.markdown("""
 """, unsafe_allow_html=True)
 
 # --- タスクを保存するための session_state ---
@@ -233,7 +240,6 @@ for i, task in enumerate(st.session_state.tasks):
 # ここで「タスクが0個ならメッセージを出さない」
 if len(st.session_state.tasks) == 0:
     st.write("まだミッションがないよ")
-    st.write("")
 else:
     done_count = sum(1 for t in st.session_state.tasks if t["done"])
     remaining = len(st.session_state.tasks) - done_count
@@ -246,18 +252,15 @@ else:
         "🐷": ["🐷", "💫", "🐷", "✨", "🐷"],
         "🐶": ["🐶", "✨", "🐶", "💫", "🐶"]
     }
-    # ★ チェックされていないときはメッセージもキャラも出さない
-    if done_count == 0:
-        pass
-    else:    
-        # ここからいつもの処理
+   
+    if done_count > 0:
         if remaining == 0:
             message = "ミッションかんりょう✌"
         elif remaining == 1:
             message = "あとすこしでコンプリート！レッツゴー！"
         else:
             message = random.choice(messages)
-
+            
         st.markdown(
             f"""
             <div style='display:flex; align-items:center;'>
