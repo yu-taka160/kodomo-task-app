@@ -7,59 +7,20 @@ import time
 import re
 
 # =========================
-# UA（スマホ判定）components.html 方式
+# UA（スマホ判定）Python方式（安定版）
 # =========================
 
-import streamlit.components.v1 as components
+ua = st.request.headers.get("User-Agent", "")
 
-# JS を実行して UA と画面幅を取得し、postMessage で返す
-components.html(
-    """
-    <script>
-    const ua = navigator.userAgent;
-    const width = window.innerWidth;
+is_mobile = bool(re.search("Mobile|Android|iPhone|iPad|iPod|Phone", ua))
 
-    // Python に値を送る
-    const data = {ua: ua, width: width};
-    window.parent.postMessage(data, "*");
-    </script>
-    """,
-    height=0,
-)
-
-# postMessage を受け取るための仕組み
-message = st.experimental_get_query_params()
-
-# UA と width を session_state に保存
-if "ua" not in st.session_state:
-    st.session_state.ua = ""
-if "width" not in st.session_state:
-    st.session_state.width = 9999
-
-# postMessage の内容を反映
-if "ua" in message:
-    st.session_state.ua = message["ua"][0]
-if "width" in message:
-    st.session_state.width = int(message["width"][0])
-
-ua = st.session_state.ua
-width = st.session_state.width
-
-# スマホ判定（UA + 画面幅）
-is_mobile = (
-    width < 600 or
-    bool(re.search("Mobile|Android|iPhone|iPad|iPod|Phone", ua))
-)
-
-# キャラセット
 pc_animals = ["🐰", "🐣", "🐧"]
 mobile_animals = ["🐹", "🐶", "🐷"]
 
 animals = mobile_animals if is_mobile else pc_animals
 
-# デバッグ表示（必要なら残す）
+# デバッグ表示（必要なら）
 st.write("UA:", ua)
-st.write("width:", width)
 st.write("is_mobile:", is_mobile)
 st.write("animals:", animals)
 
