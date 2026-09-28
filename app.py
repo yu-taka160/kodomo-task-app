@@ -7,23 +7,27 @@ import time
 import re
 
 # =========================
-# UA（スマホ判定）新方式
+# UA（スマホ判定）新方式（改良版）
 # =========================
 
-# UAをJSで取得してURLパラメータに入れる
+# UA と画面幅を JS で取得してURLパラメータに入れる
 st.markdown("""
 <script>
 const ua = navigator.userAgent;
+const width = window.innerWidth;
 const params = new URLSearchParams(window.location.search);
 params.set("ua", ua);
+params.set("width", width);
 window.history.replaceState({}, "", `${location.pathname}?${params}`);
 </script>
 """, unsafe_allow_html=True)
 
-# Python側でUAを受け取る
+# Python側でUAと画面幅を受け取る
 params = st.query_params
 ua = params.get("ua", "")
+width = int(params.get("width", "9999"))
 
+# UAが空なら再読み込み（JSがまだ動いていない場合）
 if ua == "":
     st.markdown("""
     <script>
@@ -31,10 +35,13 @@ if ua == "":
     </script>
     """, unsafe_allow_html=True)
 
-# スマホ判定
-is_mobile = bool(re.search("Mobile|Android|iPhone|iPad|iPod|Phone|Safari", ua))
+# スマホ判定（UA + 画面幅）
+is_mobile = (
+    width < 600 or
+    bool(re.search("Mobile|Android|iPhone|iPad|iPod|Phone", ua))
+)
 
-# キャラセット（ここだけで定義する）
+# キャラセット
 pc_animals = ["🐰", "🐣", "🐧"]
 mobile_animals = ["🐹", "🐶", "🐷"]
 
